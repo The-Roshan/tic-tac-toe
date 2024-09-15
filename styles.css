@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #282c34;
+    overflow: hidden;
+}
+
+#backgroundCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: #282c34;
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    animation: title-fade 2s ease-in-out infinite alternate;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 120px;
+    height: 120px;
+    background-color: #1e90ff;
+    border: 2px solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: cell-pulse 1.5s infinite alternate ease-in-out;
+}
+
+.cell:hover {
+    background-color: #ff69b4;
+    transform: scale(1.1);
+}
+
+.cell:active {
+    transform: scale(0.9);
+    background-color: #ff6347;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    outline: none;
+}
+
+button:hover {
+    background-color: #32cd32;
+    box-shadow: 0px 4px 15px rgba(0, 255, 0, 0.6);
+    transform: scale(1.1);
+}
+
+button:active {
+    background-color: #ff4500;
+    transform: scale(0.95);
+    box-shadow: 0px 2px 8px rgba(255, 69, 0, 0.6);
+}
+
+@keyframes cell-pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes winner-flash {
+    from {
+        color: #ff4500;
+    }
+    to {
+        color: #32cd32;
+    }
+}
+
+.winner {
+    animation: winner-flash 1.5s ease-in-out infinite alternate;
+}
+
+.clicked {
+    animation: click-animation 0.3s ease;
+}
+
+@keyframes click-animation {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Container for the mode selection and restart button */
+.mode-container {
+    text-align: center; /* Center text and dropdown */
+    margin: 20px 0; /* Space above and below */
+}
+
+.mode-container label {
+    font-size: 1.2rem;
+    color: #007bff; /* Change text color here */
+    margin-right: 10px;
+    font-family: 'Arial', sans-serif;
+    display: inline-block; /* Align with dropdown */
+    white-space: nowrap;
+}
+
+.mode-container select {
+    background: #fff;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for the dropdown */
+.mode-container select:hover {
+    background-color: #f0f0f0;
+    border-color: #0056b3;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Focus effect for the dropdown */
+.mode-container select:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Container for the restart button */
+.controls-container {
+    text-align: center; /* Center the button */
+    margin-top: 20px; /* Space above */
+}
+
+/* Style for the restart button */
+#restartBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block; /* Ensure button is inline */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+#restartBtn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#restartBtn:focus {
+    outline: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Style for the message container */
+#message-container {
+    text-align: center; /* Center the message */
+    margin: 20px 0; /* Space above and below */
+}
+
+#gameMessage {
+    font-size: 1.5rem;
+    color: #f8f5f5;
+    font-family: 'Arial', sans-serif;
+    display: inline-block;
+}
